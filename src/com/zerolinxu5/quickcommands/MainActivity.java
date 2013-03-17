@@ -9,6 +9,10 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.IntentFilter.MalformedMimeTypeException;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.net.Uri;
 import android.net.wifi.WifiManager;
 import android.nfc.NdefMessage;
@@ -28,7 +32,14 @@ import android.widget.Toast;
 
 import java.io.IOException;
 
-public class MainActivity extends Activity {
+public class MainActivity extends Activity implements SensorEventListener {
+	//accelerometer values
+	private float mLastX, mLastY, mLastZ;
+	private boolean mInitialized;
+	private SensorManager mSensorManager;
+	private Sensor mAccelerometer;
+	private final float NOISE = (float) 6.0;
+	
     private static final String TAG = "stickynotes";
     private boolean mResumed = false;
     private boolean mWriteMode = false;
@@ -38,7 +49,7 @@ public class MainActivity extends Activity {
     PendingIntent mNfcPendingIntent;
     IntentFilter[] mWriteTagFilters;
     IntentFilter[] mNdefExchangeFilters;
-
+    
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -64,6 +75,12 @@ public class MainActivity extends Activity {
         // Intent filters for writing to a tag
         IntentFilter tagDetected = new IntentFilter(NfcAdapter.ACTION_TAG_DISCOVERED);
         mWriteTagFilters = new IntentFilter[] { tagDetected };
+        
+        //accelerometer
+        mInitialized = false;
+        mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+        mAccelerometer = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+        mSensorManager.registerListener(this, mAccelerometer, SensorManager.SENSOR_DELAY_NORMAL);
     }
 
     @Override
@@ -338,4 +355,58 @@ public class MainActivity extends Activity {
     private void toast(String text) {
         Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
     }
+
+	@Override
+	public void onAccuracyChanged(Sensor sensor, int accuracy) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onSensorChanged(SensorEvent event) {
+		float x = event.values[0];
+		float y = event.values[1];
+		float z = event.values[2];
+		if (!mInitialized) {
+			mLastX = x;
+			mLastY = y;
+			mLastZ = z;
+			mInitialized = true;
+		} else {
+			float differenceX = mLastX -x;
+			float differenceY = mLastY - y;
+			float differenceZ = mLastZ - z;
+			float deltaX = Math.abs(mLastX - x);
+			float deltaY = Math.abs(mLastY - y);
+			float deltaZ = Math.abs(mLastZ - z);
+			if (deltaX < NOISE) deltaX = (float)0.0;
+			if (deltaY < NOISE) deltaY = (float)0.0;
+			if (deltaZ < NOISE) deltaZ = (float)0.0;
+			mLastX = x;
+			mLastY = y;
+			mLastZ = z;
+			if (deltaX > deltaY) {
+				if(differenceX < 0){
+			        Editable text = mNote.getText();
+			        text.clear();
+			        text.append("http://www.");	
+				} else {
+			        Editable text = mNote.getText();
+			        text.clear();
+			        text.append("Google: ");
+				}
+			} else if (deltaY > deltaX) {
+				if(differenceY < 0){
+			        Editable text = mNote.getText();
+			        text.clear();
+			        text.append("on: ");
+				} else {
+			        Editable text = mNote.getText();
+			        text.clear();
+			        text.append("off: ");
+				}
+
+			}
+		}
+	}
 }
