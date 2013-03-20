@@ -3,6 +3,7 @@
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:background="@drawable/icon"
     >
     <LinearLayout android:layout_height="wrap_content" android:layout_width="match_parent" android:id="@+id/linearLayout1">
 
@@ -10,8 +11,51 @@
             android:id="@+id/write_tag"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/lightBlue"
             android:text="@string/write_to_tag" >
 </Button>
     </LinearLayout>
-<EditText android:layout_width="fill_parent" android:id="@+id/note" android:layout_height="fill_parent" android:gravity="top" android:text="@string/default_note_text"></EditText>
+
+<EditText
+    android:id="@+id/note"
+    android:hint="@string/hint"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:textColor="@color/white"
+    android:gravity="top"
+    android:text="@string/default_note_text" >
+</EditText>
+
+<Button
+    android:id="@+id/button1"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:textColor="@color/blue"
+    android:onClick="wifiOn"
+    android:text="@string/WifiOn" />
+
+<Button
+    android:id="@+id/button2"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:textColor="@color/blue"
+    android:onClick="wifiOff"
+    android:text="@string/WifiOff" />
+
+<Button
+    android:id="@+id/button3"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:textColor="@color/blue"
+    android:onClick="bluetoothOn"
+    android:text="@string/BluetoothOn" />
+
+<Button
+    android:id="@+id/button4"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:textColor="@color/blue"
+    android:onClick="bluetoothOff"
+    android:text="@string/BluetoothOff" />
+
 </LinearLayout>

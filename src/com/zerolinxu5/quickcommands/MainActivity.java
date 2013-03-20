@@ -40,6 +40,7 @@ public class MainActivity extends Activity implements SensorEventListener {
 	private Sensor mAccelerometer;
 	private final float NOISE = (float) 6.0;
 	
+	//NFC values
     private static final String TAG = "stickynotes";
     private boolean mResumed = false;
     private boolean mWriteMode = false;
@@ -399,14 +400,38 @@ public class MainActivity extends Activity implements SensorEventListener {
 				if(differenceY < 0){
 			        Editable text = mNote.getText();
 			        text.clear();
-			        text.append("on: ");
+			        text.append("call: ");
 				} else {
 			        Editable text = mNote.getText();
 			        text.clear();
-			        text.append("off: ");
+			        text.append("call: ");
 				}
 
 			}
 		}
+	}
+	
+	public void wifiOn(View v){
+        Editable text = mNote.getText();
+        text.clear();
+        text.append("Wifi: on");	
+	}
+	
+	public void wifiOff(View v){
+        Editable text = mNote.getText();
+        text.clear();
+        text.append("Wifi: off");	
+	}
+	
+	public void bluetoothOn(View v){
+        Editable text = mNote.getText();
+        text.clear();
+        text.append("Bluetooth: on");	
+	}
+	
+	public void bluetoothOff(View v){
+        Editable text = mNote.getText();
+        text.clear();
+        text.append("Bluetooth: off");	
 	}
 }

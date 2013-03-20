@@ -5,4 +5,12 @@
     <string name="menu_settings">Settings</string>
     <string name="write_to_tag">Write to Tag</string>
     <string name="default_note_text">Edit me!</string>
+    <string name="WifiOn">Wifi on</string>
+    <string name="WifiOff">Wifi off</string>
+    <string name="BluetoothOn">Bluetooth on</string>
+    <string name="BluetoothOff">Bluetooth off</string>
+    <color name="white">#e6e6fa</color>
+    <color name="blue">#0099cc</color>
+    <color name="lightBlue">#33b5e5</color>
+    <string name="hint">Enter commands here</string>
 </resources>
