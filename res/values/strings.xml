@@ -9,6 +9,9 @@
     <string name="WifiOff">Wifi off</string>
     <string name="BluetoothOn">Bluetooth on</string>
     <string name="BluetoothOff">Bluetooth off</string>
+    <string name="Call">Call</string>
+    <string name="Google">Google</string>
+    <string name="Web">WebPage</string>
     <color name="white">#e6e6fa</color>
     <color name="blue">#0099cc</color>
     <color name="lightBlue">#33b5e5</color>

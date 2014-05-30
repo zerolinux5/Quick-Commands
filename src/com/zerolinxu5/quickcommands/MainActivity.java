@@ -390,21 +390,17 @@ public class MainActivity extends Activity implements SensorEventListener {
 				if(differenceX < 0){
 			        Editable text = mNote.getText();
 			        text.clear();
-			        text.append("http://www.");	
 				} else {
 			        Editable text = mNote.getText();
 			        text.clear();
-			        text.append("Google: ");
 				}
 			} else if (deltaY > deltaX) {
 				if(differenceY < 0){
 			        Editable text = mNote.getText();
 			        text.clear();
-			        text.append("call: ");
 				} else {
 			        Editable text = mNote.getText();
 			        text.clear();
-			        text.append("call: ");
 				}
 
 			}
@@ -433,5 +429,23 @@ public class MainActivity extends Activity implements SensorEventListener {
         Editable text = mNote.getText();
         text.clear();
         text.append("Bluetooth: off");	
+	}
+	
+	public void webPage(View v){
+        Editable text = mNote.getText();
+        text.clear();
+        text.append("http://www.");	
+	}
+	
+	public void call(View v){
+        Editable text = mNote.getText();
+        text.clear();
+        text.append("call: ");	
+	}
+	
+	public void google(View v){
+        Editable text = mNote.getText();
+        text.clear();
+        text.append("Google: ");	
 	}
 }

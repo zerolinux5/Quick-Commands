@@ -5,6 +5,7 @@
     android:layout_height="fill_parent"
     android:background="@drawable/icon"
     >
+
     <LinearLayout android:layout_height="wrap_content" android:layout_width="match_parent" android:id="@+id/linearLayout1">
 
         <Button
@@ -57,5 +58,29 @@
     android:textColor="@color/blue"
     android:onClick="bluetoothOff"
     android:text="@string/BluetoothOff" />
+
+<Button
+    android:id="@+id/Button01"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:onClick="call"
+    android:text="@string/Call"
+    android:textColor="@color/blue" />
+
+<Button
+    android:id="@+id/Button02"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:onClick="google"
+    android:text="@string/Google"
+    android:textColor="@color/blue" />
+
+<Button
+    android:id="@+id/Button03"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:onClick="webPage"
+    android:text="@string/Web"
+    android:textColor="@color/blue" />
 
 </LinearLayout>
